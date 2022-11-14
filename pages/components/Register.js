@@ -36,7 +36,7 @@ const Register = () => {
 
     const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const nameRegex = /^[A-Za-z ]+$/;
-    const telephoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    const telephoneRegex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
 
     if(!nameRegex.test(user.name)){
       alert.error('This is not a valid name format');
