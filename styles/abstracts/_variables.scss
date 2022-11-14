@@ -1,0 +1,36 @@
+$font-family-base: 'Roboto', sans-serif;
+$font-family-base-alt: 'Avenir';
+$icon-family-base: "ThemeIcons";
+
+$font-size-base: 14px;
+$line-height-base: 1.8;
+
+$text-color: #00A551;
+$link-color: inherit;
+
+$headings-font-family: $font-family-base;
+$headings-font-weight: 700;
+$headings-line-height: 1.3;
+$headings-color: inherit;
+
+$brand-color: #000000;
+$brand-color-alt: #000000;
+
+$button-color:linear-gradient(127.15deg, #708FDE 26.26%, #27AE60 100%);;
+$button-text-color: #ffffff;
+
+// viewport & screen sizes
+$mobile: 480px;
+$small-tablet: 768px;
+$tablet: 1024px;
+$small-desktop: 1280px;
+$desktop: 1480px;
+$viewport-increment: 1px;
+
+// layout
+$grid-columns: 12;
+$grid-gutter: 20px;
+
+
+// centering
+$centering-width: 1320px; // centering-width = width + 80 (gutter width)

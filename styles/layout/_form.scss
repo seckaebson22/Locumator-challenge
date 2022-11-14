@@ -1,0 +1,72 @@
+@include placeholder {
+  color: #7F7E83;
+  text-transform: capitalize;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  -webkit-appearance: none;
+  background: #F4F4F4;
+  border-radius: 10px;
+  border: 1px solid #7F7E83;
+  color: $text-color;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  font-size: 14px;
+  padding: 10px 20px;
+
+  &:focus {
+    border-color: #00A551;
+    outline: none;
+  }
+}
+
+
+.form-group {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+
+  label {
+    color: #7F7E83;
+    text-transform: capitalize;
+    padding-bottom: 5px;
+    
+    @include at-least($tablet){
+        font-size: 16px;
+    }
+  }
+}
+
+.form-button {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.form-footer{ 
+    text-align: center;
+    color: #474749;
+    @include at-least($tablet){
+        font-size: 16px;
+    }
+    padding-top: 15px;
+
+    a{
+        color: #00A551;
+    }
+}
+
