@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useAlert } from "react-alert";
 
 const Register = () => {
+  const alert = useAlert();
+  
   const [database, setDatabase] = useState({});
-  const [state, setState] = useState({
+  const [user, setUser] = useState({
     name: "",
     email: "",
     telephone: "",
@@ -22,22 +25,51 @@ const Register = () => {
     localStorage.setItem("database", JSON.stringify(database));
   }, [database]);
 
-  const handleSubmit = (e) => {
+  const registerUser = (e) => {
     e.preventDefault();
     const users = database.users || [];
-    console.log(users);
-    setDatabase(prevState => ({ ...prevState, users: [...users, state], }));
+
+    if (user.name === '' || user.email === '' || user.telephone === '' || user.password === '' || user.confirmPassword === '') {
+      alert.error('All fields are required');
+      return;
+    }
+
+    const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const nameRegex = /^[A-Za-z ]+$/;
+    const telephoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+
+    if(!nameRegex.test(user.name)){
+      alert.error('This is not a valid name format');
+      return;
+    }
+
+    if(!emailRegex.test(user.email)){
+      alert.error('This is not a valid email format');
+      return;
+    }
+
+    if(!telephoneRegex.test(user.telephone)){
+      alert.error('This is not a valid telephone number format');
+      return;
+    }
+
+    if (user.password !== user.confirmPassword) {
+      alert.error('Your passowords do not match');
+      return;
+    }
+
+    setDatabase(prevState => ({ ...prevState, users: [...users, user], }));
+    alert.show("Your account is created");
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
-    console.log(value)
     const id = e.target.id;
-    setState({ ...state, [id]: value });
+    setUser({ ...user, [id]: value });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={registerUser}>
       <div className="form-group">
         <label htmlFor="name">name*</label>
         <input
@@ -45,7 +77,7 @@ const Register = () => {
           name="name"
           placeholder="your name"
           id="name"
-          value={state.name}
+          value={user.name}
           onChange={handleChange}
         />
       </div>
@@ -53,11 +85,12 @@ const Register = () => {
       <div className="form-group">
         <label htmlFor="email">work email*</label>
         <input
-          type="email"
+          // type="email"
+          type="text"
           name="email"
           placeholder="your email"
           id="email"
-          value={state.email}
+          value={user.email}
           onChange={handleChange}
         />
       </div>
@@ -69,7 +102,7 @@ const Register = () => {
           name="telephone"
           placeholder="+44 01845 501417"
           id="telephone"
-          value={state.telephone}
+          value={user.telephone}
           onChange={handleChange}
         />
       </div>
@@ -81,7 +114,7 @@ const Register = () => {
           name="password"
           placeholder="your password"
           id="password"
-          value={state.password}
+          value={user.password}
           onChange={handleChange}
         />
       </div>
@@ -93,7 +126,7 @@ const Register = () => {
           name="confirm-password"
           placeholder="confirm your password"
           id="confirmPassword"
-          value={state.confirmPassword}
+          value={user.confirmPassword}
           onChange={handleChange}
         />
       </div>
