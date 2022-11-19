@@ -60,6 +60,12 @@ const Register = () => {
 
     setDatabase(prevState => ({ ...prevState, users: [...users, user], }));
     alert.show("Your account is created");
+    // empty the values of the inputs after submitting the form
+    user.name = '';
+    user.email = '';
+    user.telephone = '';
+    user.password = '';
+    user.confirmPassword = '';
   };
 
   const handleChange = (e) => {
